@@ -3,11 +3,10 @@ const express = require("express");
 const cors = require("cors");
 
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
-app.use(cors({
-    origin: "http://localhost:5173"
-}));
+// Allow requests from the deployed frontend and localhost
+app.use(cors());
 
 app.use(express.json());
 
@@ -26,5 +25,5 @@ app.get("/", (req, res) => {
 });
 
 app.listen(PORT, () => {
-    console.log(`Server running at http://localhost:${PORT}`);
+    console.log(`Server running at port ${PORT}`);
 });
